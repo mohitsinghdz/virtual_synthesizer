@@ -17,14 +17,17 @@
     
         
     type
-    <input type="range" id="tIn" min="0" max="3" oninput="show()" />    
+    <input type="range" id="tIn" min="0" max="3" value="0" oninput="show()" />    
     <span id="tOut"></span><br>
     volume
-    <input type="range" id="vIn" min="0" max="100" oninput="show()" />
+    <input type="range" id="vIn" min="0" max="100" value="80" oninput="show()" />
     <span id="vOut"></span><br>
     duration
-    <input type="range" id="dIn" min="1" max="5000" oninput="show()" />
+    <input type="range" id="dIn" min="1" max="5000"  value="1000" oninput="show()" />
     <span id="dOut"></span>
+    delay
+    <input type="range" id ="delay" min="0" max="10" value="20" oninput="show()" />
+    <span id="delayout"></span>
     <br>
 
 
@@ -92,7 +95,7 @@
         </div>
 
              
-            <script src="js/synth.js"></script> 
+            <script src="js/noise.js"></script> 
              
     </body>
 
