@@ -1,6 +1,4 @@
 
-
-
 audioCtx = new(window.AudioContext || window.webkitAudioContext)();
 
 show();
@@ -22,7 +20,8 @@ function show() {
   document.getElementById("dOut").innerHTML = duration + ' ms';
 }
 
-/*function beep() {
+//function beep(freq) {
+    freq=100;
   var oscillator = audioCtx.createOscillator();
   var gainNode = audioCtx.createGain();
 
@@ -30,19 +29,19 @@ function show() {
   gainNode.connect(audioCtx.destination);
 
   gainNode.gain.value = volume;
-  oscillator.frequency.value = frequency;
+  oscillator.frequency.value = freq;
   oscillator.type = type;
 
-  oscillator.start();
+  //oscillator.start();
 
-  setTimeout(
-    function() {
-      oscillator.stop();
-    },
-    duration
-  );
-};
-*/
+  //setTimeout(
+  //  function() {
+  //    oscillator.stop();
+  //  },
+  //  duration
+  //);
+//};
+//*/
 
 var ac = new AudioContext();
 var osc1 = ac.createOscillator();
@@ -98,26 +97,23 @@ osc3.type = type;
 osc4.type = type;
 osc5.type = type;
 osc6.type = type;
-gainNode.gain.value = 0;
+//gainNode.gain.value = 0;
 dur=50; //gain offset
-osc1.connect(gainNode);
+//osc1.connect(gainNode);
 //osc2.connect(gainNode);
 //osc3.connect(gainNode);zz
 osc4.connect(gainNode);
 osc5.connect(gainNode);
 osc6.connect(gainNode);
-gainNode.connect(ac.destination);
+//gainNode.connect(ac.destination);
 
-osc1.start();
-osc2.start();
-osc3.start();
 function playNote(freq)
 {   if(arr1[0]==0)
     {
         arr1[0]=1;
 	osc1.frequency.setValueAtTime(freq, ac.currentTime);
 
-    gainNode.gain.value = 1
+	gainNode.gain.value = 1
 	gainNode.gain.setTargetAtTime(0, ac.currentTime,0.2);
     setTimeout(
     function() {
@@ -129,10 +125,10 @@ function playNote(freq)
     if(arr1[1]==0)
     {
         arr1[1]=1;
-	//osc2.frequency.setValueAtTime(freq, ac.currentTime);
+	osc2.frequency.setValueAtTime(freq, ac.currentTime);
 
-	//gainNode.gain.value = 1
-	//gainNode.gain.setTargetAtTime(0, ac.currentTime, 0.2);
+	gainNode.gain.value = 1
+	gainNode.gain.setTargetAtTime(0, ac.currentTime, 0.2);
      setTimeout(
     function() {
       arr1[1]=0;
@@ -180,21 +176,37 @@ function playNote(freq)
     }
 
 }
-window.addEventListener("keydown",function(event){
+/*window.addEventListener("keydown",function(event){
  if(event.keyCode=='90')
- {
-    playNote(130.81);
+ {  //console.log(event);
+   beep(60);
+   
+   //alert("yo");
+    
+	//gainNode.gain.value = 1
+	//gainNode.gain.setTargetAtTime(0, ac.currentTime,0.2);
  }
 
   if(event.keyCode=='89')
- {
-    playNote(900);
+ {  beep(200);
+    //osc2.frequency.setValueAtTime(freq, ac.currentTime);
+
+	//gainNode.gain.value = 1
+	//gainNode.gain.setTargetAtTime(0, ac.currentTime, 0.2);
  }
 
  if(event.keyCode=='88')
-  playNote(500);
+    { 
+                beep(300);
+    }  
  
-},true);
+},true);*/
+
+$('body').keydown(function(){
+    oscillator.start();
+}).keyup(function(){
+    oscillator.stop();
+})
 
 
 /*window.addEventListener("keydown",function(event){
