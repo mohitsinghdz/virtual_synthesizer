@@ -1,105 +1,49 @@
-//top gimmicky master knob ()
-
-
-var knob = $('.knob');
-var angle = 0;
-var minangle=0;
-var maxangle=270; 
-
-   
-
+keypair = {
+    81:"#c4",
+    50:"#cs4",
+    87:"#d4",
+    51:"#ds4",
+    69:"#e4",
+    82:"#f4",
+    53:"#fs4",
+    84:"#g4",
+    54:"#gs4",
+    89:"#a4",
+    55:"#as4",
+    85:"#b4",
+    73:"#c5",
+    57:"#cs5",
+    79:"#d5",
+    48:"#ds5",
+    80:"#e5",
+    219:"#f5",
+    187:"#fs5",
+    221:"#g5",
  
-function move(direction){
+    90:"#c2",
+    83:"#cs2",
+    88:"#d2",
+    68:"#ds2",
+    67:"#e2",
+    86:"#f2",
+    71:"#fs2",
+    66:"#g2",
+    72:"#gs2",
+    78:"#a2",
+    74:"#as2",
+    77:"#b2",
+    188:"#c3",
+    76:"#cs3",
+    190:"#d3",
+    186:"#ds3",
+    191:"#e3"
+}
+$("html").keydown(function(event) {
     
-    if(direction=='up')
-    {
-        if((angle+2)<=maxangle){
-            angle=angle+2;
-            setAngle();
-        }
-    }
-
-    else {
-        if((angle-2)>=minangle){
-            angle=angle-2;
-            setAngle();
-        }
-    }
-}
-
-function movenum(direction,num){
-    if(direction=='up')
-    {
-        if((angle+num)<=maxangle){
-            angle=angle+num;
-            setAngle();
-        }
-
-        else
-        {
-           angle=maxangle;
-        }
-    }
-
-    else {
-        if((angle+num)>=minangle){
-            angle=angle+num;
-            setAngle();
-        }
-
-        else{
-            angle=minangle;
-        }
-    }
-}
-
-function setAngle()
-{
-    //rotation of knob
-    knob.css({
-    '-moz-transform':'rotate('+angle+'deg)',
-    '-webkit-transform':'rotate('+angle+'deg)',
-     '-o-transform':'rotate('+angle+'deg)',
-    '-ms-transform':'rotate('+angle+'deg)',
-    'transform':'rotate('+angle+'deg)'
-  });
-
-  //highlighint ticks
-   var activeTicks =  (Math.round(angle/10)+1);
-   $('.tick').removeClass('activetick');
-   $('.tick').slice(0,activeTicks).addClass('activetick');
-
-   var count = Math.round((angle/270)*100);
-   $('#value').text(count+'%');
-}
-knob.bind('mousewheel', function(e){
-  if(e.originalEvent.wheelDelta < 0) {
-    move('down');
-  } else {
-    move('up');
-  }
-  return false;
+    $(keypair[event.which]).addClass("pressed");
+    console.log("as");
 });
-
-$('.knob').on('mousedown', function(e) {
-    $(this).data('p0', { x: e.pageX, y: e.pageY });
-    setTimeout(function(){
-        var p0 = $(this).data('p0'),
-        p1 = { x: e.pageX, y: e.pageY };
-        
-        if(p0.y-p1.y<0){
-            movenum("down",p0.y-p1.y);
-        }
-        else
-        {
-            movenum('up',p0.y-p1.y);
-        }
-        //p2  = {x: e.pageX, y: e.pageY};
-        //console.log(p0.y-p2.y);
-    }, 400);
-
-}).on('mouseup', function(e) {
-    
-    }
-);
-
+$("html").keyup(function(event) {
+    $(keypair[event.which]).removeClass("pressed");
+    console.log("as");
+});

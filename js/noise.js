@@ -184,15 +184,19 @@ window.addEventListener("keydown",function(event){
  playNote(scale[event.keyCode]);
  playNote2(scale[event.keyCode]);
   playNote3(scale[event.keyCode]);
-  if(event.keyCode==81)
-  {
-    console.log("as");
-  }
+ 
  console.log(event.keyCode);
  //beep(400);
- 
+/* if(event.keyCode==81)
+ {
+var x = document.getElementById("c4");
+x.className += " pressed";
+ }
+ */
  
 },true);
+
+
 
 
 
